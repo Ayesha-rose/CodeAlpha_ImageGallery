@@ -1,8 +1,42 @@
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --h1-color: #ffffff;
+    --filter-button-bg: transparent;
+    --filter-button-text: #ccc;
+    --filter-button-border: #555;
+    --filter-button-hover-bg: #f0f0f0;
+    --filter-button-hover-text: #1a1a1a;
+    --filter-button-hover-border: #f0f0f0;
+    --image-item-shadow: rgba(0, 0, 0, 0.2);
+    --image-item-hover-shadow: rgba(0, 0, 0, 0.4);
+    --lightbox-bg: rgba(0, 0, 0, 0.9);
+    --lightbox-text-color: #ccc;
+    --lightbox-text-hover-color: #fff;
+}
+
+body.light-mode {
+    --bg-color: #f0f0f0;
+    --text-color: #1a1a1a;
+    --h1-color: #1a1a1a;
+    --filter-button-bg: #fff;
+    --filter-button-text: #1a1a1a;
+    --filter-button-border: #ccc;
+    --filter-button-hover-bg: #1a1a1a;
+    --filter-button-hover-text: #f0f0f0;
+    --filter-button-hover-border: #1a1a1a;
+    --image-item-shadow: rgba(0, 0, 0, 0.1);
+    --image-item-hover-shadow: rgba(0, 0, 0, 0.2);
+    --lightbox-bg: rgba(255, 255, 255, 0.9);
+    --lightbox-text-color: #333;
+    --lightbox-text-hover-color: #000;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
-    background-color: #1a1a1a;
-    color: #f0f0f0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .container {
@@ -14,9 +48,9 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 40px;
-    color: #ffffff;
+    color: var(--h1-color);
     font-size: 2.8em;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 1px;
 }
 
@@ -26,30 +60,30 @@ h1 {
 }
 
 .filter-button {
-    background-color: transparent;
-    border: 1px solid #555;
+    background-color: var(--filter-button-bg);
+    border: 1px solid var(--filter-button-border);
     padding: 10px 25px;
     margin: 5px;
     cursor: pointer;
     border-radius: 25px;
     transition: all 0.3s ease;
     font-size: 0.9em;
-    color: #ccc;
+    color: var(--filter-button-text);
     outline: none;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .filter-button:hover {
-    background-color: #f0f0f0;
-    color: #1a1a1a;
-    border-color: #f0f0f0;
+    background-color: var(--filter-button-hover-bg);
+    color: var(--filter-button-hover-text);
+    border-color: var(--filter-button-hover-border);
 }
 
 .filter-button.active {
-    background-color: #f0f0f0;
-    color: #1a1a1a;
-    border-color: #f0f0f0;
+    background-color: var(--filter-button-hover-bg);
+    color: var(--filter-button-hover-text);
+    border-color: var(--filter-button-hover-border);
 }
 
 .image-gallery {
@@ -63,7 +97,7 @@ h1 {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--image-item-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 250px;
 }
@@ -78,7 +112,7 @@ h1 {
 
 .image-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px var(--image-item-hover-shadow);
 }
 
 .image-item:hover img {
@@ -92,7 +126,7 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: var(--lightbox-bg);
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -128,13 +162,13 @@ h1 {
     top: 20px;
     right: 30px;
     font-size: 40px;
-    color: #ccc;
+    color: var(--lightbox-text-color);
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .close-button:hover {
-    color: #fff;
+    color: var(--lightbox-text-hover-color);
 }
 
 .prev-button,
@@ -143,7 +177,7 @@ h1 {
     top: 50%;
     transform: translateY(-50%);
     font-size: 50px;
-    color: #ccc;
+    color: var(--lightbox-text-color);
     cursor: pointer;
     padding: 10px 15px;
     user-select: none;
@@ -153,7 +187,7 @@ h1 {
 
 .prev-button:hover,
 .next-button:hover {
-    color: #fff; 
+    color: var(--lightbox-text-hover-color);
     background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -163,4 +197,10 @@ h1 {
 
 .next-button {
     right: 20px;
+}
+
+.footer p {
+    font-weight: 300;
+    font-size: 0.9em;
+    letter-spacing: 1px;
 }

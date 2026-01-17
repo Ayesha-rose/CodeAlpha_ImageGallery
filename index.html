@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
+    <title>Image Gallery Pro</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
+    <div class="theme-switcher">
+        <label class="switch">
+            <input type="checkbox" id="theme-switcher">
+            <span class="slider"></span>
+        </label>
+    </div>
     <div class="container">
-        <h1>Image Gallery</h1>
+        <h1>Image Gallery Pro</h1>
         <div class="filter-buttons">
             <button class="filter-button active" data-filter="all">All</button>
             <button class="filter-button" data-filter="nature">Nature</button>
@@ -97,6 +104,10 @@
         <img class="lightbox-content" id="lightbox-img">
         <a class="prev-button">&#10094;</a>
         <a class="next-button">&#10095;</a>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 Image Gallery Pro</p>
     </div>
 
     <script src="script.js"></script>
