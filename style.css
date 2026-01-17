@@ -1,0 +1,166 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ffffff;
+    font-size: 2.8em;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.filter-buttons {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.filter-button {
+    background-color: transparent;
+    border: 1px solid #555;
+    padding: 10px 25px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+    color: #ccc;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filter-button:hover {
+    background-color: #f0f0f0;
+    color: #1a1a1a;
+    border-color: #f0f0f0;
+}
+
+.filter-button.active {
+    background-color: #f0f0f0;
+    color: #1a1a1a;
+    border-color: #f0f0f0;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.image-item {
+    cursor: pointer;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 250px;
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.image-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.image-item:hover img {
+    transform: scale(1.05);
+}
+
+.lightbox {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    max-width: 780px;
+    max-height: 780px;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    object-fit: contain;
+    width: auto;
+    height: auto;
+}
+
+.lightbox.active .lightbox-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #fff;
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    color: #ccc;
+    cursor: pointer;
+    padding: 10px 15px;
+    user-select: none;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.prev-button:hover,
+.next-button:hover {
+    color: #fff; 
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.prev-button {
+    left: 20px;
+}
+
+.next-button {
+    right: 20px;
+}
