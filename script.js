@@ -1,23 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const themeSwitcher = document.getElementById('theme-switcher');
-    const body = document.body;
-
-    // Check for saved theme preference
-    if (localStorage.getItem('theme') === 'light') {
-        body.classList.add('light-mode');
-        themeSwitcher.checked = true;
-    }
-
-    themeSwitcher.addEventListener('change', () => {
-        if (themeSwitcher.checked) {
-            body.classList.add('light-mode');
-            localStorage.setItem('theme', 'light');
-        } else {
-            body.classList.remove('light-mode');
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-
     const filterButtons = document.querySelectorAll('.filter-button');
     const imageItems = document.querySelectorAll('.image-item');
     const lightbox = document.getElementById('lightbox');
@@ -27,16 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextButton = document.querySelector('.next-button');
 
     let currentIndex = 0;
-    let filteredImages = [];
-
-    function updateFilteredImages() {
-        const activeFilter = document.querySelector('.filter-button.active').dataset.filter;
-        if (activeFilter === 'all') {
-            filteredImages = Array.from(imageItems);
-        } else {
-            filteredImages = Array.from(imageItems).filter(item => item.dataset.category === activeFilter);
-        }
-    }
+    const images = Array.from(imageItems);
 
     // Filter images
     filterButtons.forEach(button => {
@@ -53,58 +25,62 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.style.display = 'none';
                 }
             });
-            updateFilteredImages();
         });
     });
 
-    // Lightbox functionality
-    imageItems.forEach((item) => {
+
+    imageItems.forEach((item, index) => {
         item.addEventListener('click', () => {
-            updateFilteredImages();
-            currentIndex = filteredImages.indexOf(item);
-            openLightbox();
+            const category = item.dataset.category;
+            const imagesInCategory = Array.from(document.querySelectorAll(`.image-item[data-category="${category}"]`));
+            const categoryIndex = imagesInCategory.findIndex(img => img === item);
+            openLightbox(category, categoryIndex);
         });
     });
 
-    function openLightbox() {
-        if (filteredImages[currentIndex]) {
-            const imgSrc = filteredImages[currentIndex].querySelector('img').src;
+    function openLightbox(category, index) {
+        const imagesInCategory = Array.from(document.querySelectorAll(`.image-item[data-category="${category}"]`));
+        if (imagesInCategory[index]) {
+            const imgSrc = imagesInCategory[index].querySelector('img').src;
             lightboxImg.src = imgSrc;
-            lightbox.style.display = 'flex'; // Make it visible for transition
-            // Add 'active' class after a short delay to allow 'display: flex' to apply
+            lightbox.style.display = 'flex';
             setTimeout(() => {
                 lightbox.classList.add('active');
-            }, 10); // Small delay to ensure display:flex is rendered
+            }, 10);
+            currentIndex = index;
+            currentCategory = category;
         }
     }
 
     function closeLightbox() {
-        lightbox.classList.remove('active'); // Start fade-out
+        lightbox.classList.remove('active');
         setTimeout(() => {
-            lightbox.style.display = 'none'; // Hide after transition
-        }, 300); // Match CSS transition duration
+            lightbox.style.display = 'none';
+        }, 300);
     }
 
+    let currentCategory = 'all';
+
     function showPrevImage() {
-        currentIndex = (currentIndex - 1 + filteredImages.length) % filteredImages.length;
-        openLightbox();
+        const imagesInCategory = Array.from(document.querySelectorAll(`.image-item[data-category="${currentCategory}"]`));
+        currentIndex = (currentIndex - 1 + imagesInCategory.length) % imagesInCategory.length;
+        openLightbox(currentCategory, currentIndex);
     }
 
     function showNextImage() {
-        currentIndex = (currentIndex + 1) % filteredImages.length;
-        openLightbox();
+        const imagesInCategory = Array.from(document.querySelectorAll(`.image-item[data-category="${currentCategory}"]`));
+        currentIndex = (currentIndex + 1) % imagesInCategory.length;
+        openLightbox(currentCategory, currentIndex);
     }
 
     closeButton.addEventListener('click', closeLightbox);
     prevButton.addEventListener('click', showPrevImage);
     nextButton.addEventListener('click', showNextImage);
 
-    // Close lightbox on escape key
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeLightbox();
         }
     });
-
-    updateFilteredImages();
 });

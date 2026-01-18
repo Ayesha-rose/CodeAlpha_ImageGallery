@@ -4,17 +4,20 @@
     right: 20px;
     z-index: 1001;
 }
+
 .switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
 }
+
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -26,6 +29,7 @@
     transition: .4s;
     border-radius: 34px;
 }
+
 .slider:before {
     position: absolute;
     content: "";
@@ -37,12 +41,62 @@
     transition: .4s;
     border-radius: 50%;
 }
+
 input:checked + .slider {
     background-color: #2196F3;
 }
+
 input:focus + .slider {
     box-shadow: 0 0 1px #2196F3;
 }
+
 input:checked + .slider:before {
     transform: translateX(26px);
+}
+
+body.light-mode {
+    background-color: #f0f0f0;
+    color: #1a1a1a;
+}
+
+.light-mode h1 {
+    color: #1a1a1a;
+}
+
+.light-mode .filter-button {
+    background-color: #fff;
+    color: #1a1a1a;
+    border-color: #ccc;
+}
+
+.light-mode .filter-button:hover {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    border-color: #1a1a1a;
+}
+
+.light-mode .filter-button.active {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    border-color: #1a1a1a;
+}
+
+.light-mode .image-item {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .image-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .close-button,
+.light-mode .prev-button,
+.light-mode .next-button {
+    color: #333;
+}
+
+.light-mode .close-button:hover,
+.light-mode .prev-button:hover,
+.light-mode .next-button:hover {
+    color: #000;
 }
